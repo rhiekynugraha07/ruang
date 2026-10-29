@@ -49,6 +49,7 @@ const AGENT_LABELS: Record<string, string> = {
   'erp-cenghar': 'Mas Elon',
   'threads-cenghar': 'Aceng',
   'marketplace-cenghar': 'Bezos',
+  'sales-cenghar': 'Leonardo',
   'threads-pribadi': 'Rico',
   'default': 'Default',
   'opencode': 'OpenCode',
