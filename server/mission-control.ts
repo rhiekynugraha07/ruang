@@ -1,5 +1,6 @@
 import { execFile as execFileCallback } from 'node:child_process'
 import { promisify } from 'node:util'
+import { agentLabel } from './agent-labels.js'
 
 const execFile = promisify(execFileCallback)
 const CACHE_MS = 10_000
@@ -935,7 +936,7 @@ export function buildOfficeSnapshot(runtime: RuntimeSnapshot, board: TaskBoardSn
     const liveProvenance = options.agentActivity ? `; live activity (${agent.profile ? `hermes -p ${agent.profile} logs/sessions` : 'agent logs mentioning OpenCode'}, last ${ACTIVITY_WINDOW}): ${!agentActivity || !live.known ? 'unavailable' : live.state !== 'Unknown' ? live.probe?.kind ?? 'active' : 'none'}` : ''
     return {
       id: agent.id,
-      name: agent.id,
+      name: agentLabel(agent.id),
       role: agent.role,
       ...roomForState(state, index),
       seat: index + 1,

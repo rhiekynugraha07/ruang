@@ -3,6 +3,7 @@ import { access, open, readdir, realpath, stat } from 'node:fs/promises'
 import { homedir, userInfo } from 'node:os'
 import path from 'node:path'
 import { redactLogLine } from './mission-control.js'
+import { agentLabel } from './agent-labels.js'
 
 // Read-only browser over each agent's own folder: ~/.hermes/profiles/<name> for Hermes
 // profiles (`default` falls back to ~/.hermes when it has no profiles/default folder) and
@@ -244,7 +245,7 @@ export async function resolveAgentFolders(profiles: string[], env: NodeJS.Proces
   const folders: AgentFolder[] = []
   for (const spec of specs) {
     const { directory, real, denied } = await firstDirectory(spec.candidates)
-    const label = spec.profile
+    const label = agentLabel(spec.profile)
     const base = { profile: spec.profile, label, path: displayPath(directory, home), directory: real ?? directory }
     // OpenCode is optional: without its folder it is simply not listed.
     if (!real && spec.profile === 'opencode' && !denied) continue

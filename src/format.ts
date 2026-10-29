@@ -44,7 +44,18 @@ export function formatBytes(bytes: number): string {
   return `${(bytes / 1024 / 1024).toFixed(1)} MB`
 }
 
-/** Display name for an agent: its Hermes profile name as-is. */
+/** Display names for Cenghar Hermes profiles (folder id stays technical). */
+const AGENT_LABELS: Record<string, string> = {
+  'erp-cenghar': 'Mas Elon',
+  'threads-cenghar': 'Aceng',
+  'marketplace-cenghar': 'Admin MP',
+  'threads-pribadi': 'Rico',
+  'default': 'Default',
+  'opencode': 'OpenCode',
+}
+
+/** Display name for an agent: friendly label when known, else Hermes profile id. */
 export function agentLabel(profile: string | undefined): string {
-  return profile ?? 'Hermes'
+  if (!profile) return 'Hermes'
+  return AGENT_LABELS[profile] ?? profile
 }
