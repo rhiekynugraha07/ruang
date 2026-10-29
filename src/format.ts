@@ -48,7 +48,7 @@ export function formatBytes(bytes: number): string {
 const AGENT_LABELS: Record<string, string> = {
   'erp-cenghar': 'Mas Elon',
   'threads-cenghar': 'Aceng',
-  'marketplace-cenghar': 'Admin MP',
+  'marketplace-cenghar': 'Bezos',
   'threads-pribadi': 'Rico',
   'default': 'Default',
   'opencode': 'OpenCode',
